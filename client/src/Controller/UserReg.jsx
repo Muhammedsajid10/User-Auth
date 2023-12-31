@@ -1,11 +1,9 @@
-// UserReg.jsx
-
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './UserReg.css'; // Import the CSS file
+import './UserReg.css';
 
 const UserReg = () => {
     const [name, setName] = useState("");
@@ -15,7 +13,7 @@ const UserReg = () => {
     const navigate = useNavigate();
 
     const validateForm = () => {
-        if(name.trim()==='' || email.trim()==='' || password.trim()===''){
+        if (name.trim() === '' || email.trim() === '' || password.trim() === '') {
             setError('All fields are required...');
             return false;
         }
@@ -24,13 +22,13 @@ const UserReg = () => {
 
     const postData = async (e) => {
         e.preventDefault();
-        if(!validateForm()){
+        if (!validateForm()) {
             return;
         }
         try {
             const userData = { name, email, password };
             const response = await axios.post('http://localhost:5000/reg', userData);
-            console.log("postData : ",response.data);
+            console.log("postData : ", response.data);
             navigate('/login');
         } catch (error) {
             console.log('error on while posting data..');
@@ -45,12 +43,12 @@ const UserReg = () => {
                 <Form onSubmit={postData}>
                     <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter name" value={name} onChange={(e) =>{ setName(e.target.value); setError('');}}  />
+                        <Form.Control type="text" placeholder="Enter name" value={name} onChange={(e) => { setName(e.target.value); setError(''); }} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) =>{ setEmail(e.target.value); setError('')}} />
+                        <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => { setEmail(e.target.value); setError('') }} />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text>
@@ -58,7 +56,7 @@ const UserReg = () => {
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" value={password} onChange={(e) =>{ setPassword(e.target.value); setError('')}} />
+                        <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value); setError('') }} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Check type="checkbox" label="Check me out" />

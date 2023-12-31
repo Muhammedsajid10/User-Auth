@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import './UserDashboard.css'; // Import the CSS file
+import './UserDashboard.css';
 
 const UserDashboard = () => {
     const [text, setText] = useState("");
